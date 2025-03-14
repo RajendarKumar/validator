@@ -16,7 +16,7 @@ class ValidationConfigTest {
 
     @Test
     void shouldLoadRequestValidation() {
-        Map<String, Object> validation = config.getRequestValidation("createOrder");
+        Map<String, Object> validation = config.getRequestValidation("validation-rules","createOrder");
         assertNotNull(validation);
         assertEquals("/api/orders", validation.get("path"));
         assertEquals("POST", validation.get("method"));
@@ -24,7 +24,7 @@ class ValidationConfigTest {
 
     @Test
     void shouldReturnNull_WhenEndpointNotFound() {
-        Map<String, Object> validation = config.getRequestValidation("nonexistentEndpoint");
+        Map<String, Object> validation = config.getRequestValidation("validation-rules","nonexistentEndpoint");
         assertNull(validation);
     }
 } 

@@ -31,7 +31,7 @@ public class Main {
         ValidationConfig config = new ValidationConfig();
 
         try {
-            Map<String, Object> rules = config.getRequestValidation("createOrder");
+            Map<String, Object> rules = config.getRequestValidation("validation-rules","createOrder");
             List<Map<String, Object>> validations = 
                 (List<Map<String, Object>>) rules.get("validations");
             validator.validateObject(order, validations);
