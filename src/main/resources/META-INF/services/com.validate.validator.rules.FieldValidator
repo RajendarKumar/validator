@@ -1,0 +1,5 @@
+com.validate.validator.rules.RequiredValidator
+com.validate.validator.rules.PatternValidator
+com.validate.validator.rules.MinLengthValidator
+com.validate.validator.rules.MinValidator
+com.validate.validator.rules.MaxLengthValidator
