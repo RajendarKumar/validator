@@ -1,0 +1,63 @@
+requests:
+  createOrder:
+    path: /api/orders
+    method: POST
+    validations:
+      - field: orderId
+        rules:
+          - type: required
+          - type: pattern
+            value: "^ORD-[0-9]{6}$"
+            message: "must match format ORD-XXXXXX where X is a digit"
+      - field: customer
+        type: object
+        rules:
+          - type: required
+        fields:
+          - field: name
+            rules:
+              - type: required
+              - type: minLength
+                value: 2
+          - field: email
+            rules:
+              - type: required
+              - type: pattern
+                value: "^[A-Za-z0-9+_.-]+@(.+)$"
+                message: "must be a valid email address"
+      - field: items
+        type: list
+        rules:
+          - type: required
+        itemValidations:
+          - field: productId
+            rules:
+              - type: required
+          - field: quantity
+            rules:
+              - type: required
+              - type: min
+                value: 1
+      - field: shippingAddress
+        type: object
+        fields:
+          - field: street
+            rules:
+              - type: required
+              - type: maxLength
+                value: 100
+          - field: city
+            rules:
+              - type: required
+              - type: maxLength
+                value: 50
+          - field: zipCode
+            rules:
+              - type: required
+              - type: pattern
+                value: "^\\d{5}(-\\d{4})?$"
+                message: "must be a valid ZIP code"
+          - field: notes
+            rules:
+              - type: maxLength
+                value: 200 

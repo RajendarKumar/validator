@@ -1,0 +1,25 @@
+requests:
+  createOrder:
+    path: /api/orders
+    method: POST
+    validations:
+      - field: orderId
+        rules:
+          - type: required
+          - type: pattern
+            value: "^ORD-[0-9]{6}$"
+      - field: customer
+        type: object
+        rules:
+          - type: required
+        fields:
+          - field: name
+            rules:
+              - type: required
+              - type: minLength
+                value: 2
+          - field: email
+            rules:
+              - type: required
+              - type: pattern
+                value: "^[A-Za-z0-9+_.-]+@(.+)$" 
